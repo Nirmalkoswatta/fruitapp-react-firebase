@@ -54,6 +54,83 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Modern form styles */
+.form-container {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  padding: 2rem;
+  max-width: 350px;
+  margin: 2rem auto;
+  animation: fadeIn 0.7s cubic-bezier(.39,.575,.565,1.000);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+input[type="email"], input[type="password"], input[type="text"] {
+  width: 100%;
+  padding: 0.75em 1em;
+  margin-bottom: 1em;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border 0.2s;
+  background: #f9f9f9;
+}
+input:focus {
+  border-color: #646cff;
+  outline: none;
+}
+
+button {
+  background: linear-gradient(90deg, #646cff 0%, #535bf2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75em 1.5em;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(100,108,255,0.08);
+  transition: background 0.2s, transform 0.1s;
+}
+button:hover {
+  background: linear-gradient(90deg, #535bf2 0%, #646cff 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.auth-link {
+  color: #646cff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.95em;
+  margin-top: 1em;
+  display: inline-block;
+}
+
+.error-message {
+  color: #e53e3e;
+  background: #fff0f0;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+
+.success-message {
+  color: #38a169;
+  background: #f0fff4;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
