@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase';
+import LogoutButton from '../components/LogoutButton';
 
 export default function Dashboard() {
   const [form, setForm] = useState({ name: '', price: '', amount: '' });
@@ -24,6 +25,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-page">
+      <LogoutButton />
       <div className="animated-bg">
         <div className="animated-bg-shape animated-bg-shape1" />
         <div className="animated-bg-shape animated-bg-shape2" />
@@ -32,12 +34,6 @@ export default function Dashboard() {
       {/* Navbar */}
       <div className="dashboard-navbar">
         <h2 className="dashboard-title">Fruit Dashboard</h2>
-        <button
-          onClick={() => auth.signOut()}
-          className="dashboard-logout"
-        >
-          Logout
-        </button>
       </div>
       <form onSubmit={handleAddFruit} className="dashboard-form">
         <input

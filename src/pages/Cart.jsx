@@ -1,14 +1,23 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
 import { useNavigate } from 'react-router-dom';
+import LogoutButton from '../components/LogoutButton';
+import { toast } from 'react-toastify';
 
 export default function Cart() {
   const { cart, updateCartItem, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  const handleCheckout = async () => {
+    // Navigate to billing page instead of direct checkout
+    if (cart.length === 0) return toast.info('Your cart is empty!');
+    navigate('/billing');
+  };
+
   return (
     <div className="cart-page">
+      <LogoutButton />
       <div className="animated-bg">
         <div className="animated-bg-shape animated-bg-shape1" />
         <div className="animated-bg-shape animated-bg-shape2" />
@@ -42,6 +51,7 @@ export default function Cart() {
       <div className="cart-total-row">
         <span className="cart-total-label">Total:</span>
         <span className="cart-total-value">${total.toFixed(2)}</span>
+        <button className="cart-back-btn" style={{marginLeft: '2rem'}} onClick={handleCheckout}>Checkout</button>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } f
 import { auth, db } from './firebase';
 import { collection, setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Register() {
   const [form, setForm] = useState({ email: '', password: '', mobile: '' });
@@ -22,6 +23,7 @@ export default function Register() {
     if (!form.email || !form.password || !form.mobile) {
       setError('All fields are required.');
       setLoading(false);
+      toast.error('All fields are required.');
       return;
     }
     try {
@@ -30,9 +32,11 @@ export default function Register() {
         email: form.email,
         mobile: form.mobile
       });
+      toast.success('Registration successful!');
       navigate('/');
     } catch (err) {
       setError(err.message.replace('Firebase: ', ''));
+      toast.error('Registration failed: ' + err.message.replace('Firebase: ', ''));
     }
     setLoading(false);
   };

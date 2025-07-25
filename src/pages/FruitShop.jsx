@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../store/CartContext';
+import LogoutButton from '../components/LogoutButton';
+import { toast } from 'react-toastify';
 
 const mockFruits = [
   { id: 1, name: 'Apple', price: 2.5, emoji: '🍎', photo: '/apple.jpeg' },
@@ -27,8 +29,14 @@ export default function FruitShop() {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
+  const handleAddToCart = (fruit) => {
+    addToCart(fruit);
+    toast.success(`${fruit.name} added to cart!`);
+  };
+
   return (
     <div className="fruitshop-page">
+      <LogoutButton />
       <div className="animated-bg">
         <div className="animated-bg-shape animated-bg-shape1" />
         <div className="animated-bg-shape animated-bg-shape2" />
@@ -48,7 +56,7 @@ export default function FruitShop() {
             )}
             <div className="fruitshop-name">{fruit.name}</div>
             <div className="fruitshop-price">${fruit.price.toFixed(2)}</div>
-            <button className="fruitshop-add-btn" onClick={() => addToCart(fruit)}>Add to Cart</button>
+            <button className="fruitshop-add-btn" onClick={() => handleAddToCart(fruit)}>Add to Cart</button>
           </div>
         ))}
       </div>

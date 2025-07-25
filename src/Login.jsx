@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { auth } from './firebase'; // 🔁 Make sure your firebase.js file exports `auth`
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -21,9 +22,11 @@ export default function Login() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, form.email, form.password);
+      toast.success('Login successful!');
       navigate('/');
     } catch (err) {
       setError(err.message.replace('Firebase: ', ''));
+      toast.error('Login failed: ' + err.message.replace('Firebase: ', ''));
     }
     setLoading(false);
   };
