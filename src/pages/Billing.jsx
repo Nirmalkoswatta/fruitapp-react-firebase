@@ -18,7 +18,7 @@ export default function Billing() {
     city: '',
     state: '',
     zipCode: '',
-    country: 'United States'
+    country: 'Sri Lanka'
   });
   
   const [creditCardInfo, setCreditCardInfo] = useState({
@@ -233,6 +233,7 @@ export default function Billing() {
                 onChange={(e) => handleBillingInfoChange('country', e.target.value)}
                 className="form-input"
               >
+                <option value="Sri Lanka">Sri Lanka</option>
                 <option value="United States">United States</option>
                 <option value="Canada">Canada</option>
                 <option value="United Kingdom">United Kingdom</option>
